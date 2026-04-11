@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stefan Kirov — Independent Engineering Consultant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #111111;
+    --paper: #F5F2EE;
+    --warm-mid: #8C7B6B;
+    --accent: #C0512F;
+    --rule: rgba(0,0,0,0.12);
+    --card-bg: #FFFFFF;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.028;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(245,242,238,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.07); }
+  .nav-logo { font-family: var(--serif); font-size: 1.15rem; letter-spacing: 0.02em; color: var(--ink); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--warm-mid); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 8rem 4rem 4rem; gap: 4rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem;
+    opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+  }
+  .hero h1 {
+    font-family: var(--serif); font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-desc {
+    font-size: 1.05rem; color: var(--warm-mid); max-width: 46ch;
+    margin-bottom: 2.5rem; font-weight: 300; line-height: 1.75;
+    opacity: 0; animation: fadeUp 0.7s 0.5s forwards;
+  }
+  .hero-ctas {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.7s 0.65s forwards;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--ink); color: #fff; padding: 0.85rem 1.8rem;
+    font-family: var(--sans); font-size: 0.82rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+    border: none; cursor: pointer; transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent; color: var(--ink); padding: 0.85rem 1.8rem;
+    font-family: var(--sans); font-size: 0.82rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+    border: 1.5px solid var(--ink); cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  /* HERO CARD */
+  .hero-visual {
+    position: relative; display: flex; align-items: center; justify-content: center;
+    opacity: 0; animation: fadeIn 1s 0.5s forwards;
+  }
+  .hero-card {
+    background: var(--card-bg); border: 1px solid var(--rule);
+    padding: 2.5rem; width: 100%; max-width: 400px;
+    box-shadow: 8px 16px 48px rgba(0,0,0,0.08); position: relative;
+  }
+  .hero-card::before {
+    content: ''; position: absolute; top: -12px; left: -12px;
+    width: 100%; height: 100%; border: 1.5px solid var(--accent); z-index: -1;
+  }
+  .hero-card-label {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--warm-mid); margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule); padding-bottom: 0.75rem;
+  }
+  .stat-row { display: flex; justify-content: space-between; margin-bottom: 1.2rem; }
+  .stat-item { text-align: center; }
+  .stat-num { font-family: var(--serif); font-size: 2.2rem; line-height: 1; color: var(--ink); display: block; }
+  .stat-label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-mid); margin-top: 0.25rem; }
+  .tech-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); }
+  .chip {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.04em;
+    background: var(--paper); border: 1px solid var(--rule);
+    padding: 0.25rem 0.65rem; color: var(--ink); white-space: nowrap;
+  }
+  .chip.hot { background: rgba(192,81,47,0.08); border-color: var(--accent); color: var(--accent); }
+
+  /* SECTION BASE */
+  section { padding: 5rem 4rem; }
+  .section-num { font-family: var(--serif); font-style: italic; font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem; }
+  .section-title { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.1; margin-bottom: 3rem; letter-spacing: -0.01em; }
+
+  /* OFFER */
+  #offer { background: var(--ink); }
+  #offer .section-title { color: #fff; }
+  #offer .section-num { color: var(--accent); }
+  .offer-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.08);
+  }
+  .offer-block { background: var(--ink); padding: 2rem; transition: background 0.25s; cursor: default; }
+  .offer-block:hover { background: #1c1c1c; }
+  .offer-icon {
+    width: 36px; height: 36px; border: 1.5px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem; font-size: 1rem;
+  }
+  .offer-title { font-family: var(--serif); font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem; }
+  .offer-desc { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.65; font-weight: 300; }
+
+  /* PROCESS */
+  #process { background: var(--card-bg); }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem; counter-reset: step;
+  }
+  .process-step {
+    padding: 2rem; border: 1px solid var(--rule);
+    transition: border-color 0.25s, transform 0.25s; cursor: default;
+    counter-increment: step; position: relative; overflow: hidden;
+  }
+  .process-step::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute; top: -0.5rem; right: 1rem;
+    font-family: var(--serif); font-size: 4rem;
+    color: var(--rule); line-height: 1; pointer-events: none;
+  }
+  .process-step:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .process-step-title { font-family: var(--serif); font-size: 1.15rem; margin-bottom: 0.75rem; }
+  .process-step-desc { font-size: 0.85rem; color: var(--warm-mid); font-weight: 300; line-height: 1.7; }
+
+  /* STACK */
+  #stack { background: var(--paper); }
+  .stack-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+  .stack-group-label {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--warm-mid);
+    margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--rule);
+  }
+  .stack-items { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .stack-tag {
+    font-size: 0.82rem; padding: 0.4rem 0.9rem;
+    border: 1.5px solid var(--ink); background: transparent;
+    color: var(--ink); font-weight: 500; transition: background 0.2s, color 0.2s; cursor: default;
+  }
+  .stack-tag:hover { background: var(--ink); color: #fff; }
+  .stack-tag.emerging { border-color: var(--accent); color: var(--accent); }
+  .stack-tag.emerging:hover { background: var(--accent); color: #fff; }
+
+  /* CONTACT */
+  #contact { background: var(--ink); }
+  #contact .section-num { color: var(--accent); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-intro {
+    font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.8rem);
+    line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 1.5rem; color: #fff;
+  }
+  .contact-intro em { font-style: italic; color: var(--accent); }
+  .contact-blurb { font-size: 0.9rem; color: rgba(255,255,255,0.45); font-weight: 300; line-height: 1.75; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    text-decoration: none; color: #fff; font-size: 0.9rem; font-weight: 400;
+    padding: 1.2rem 1.4rem; background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); transform: translateX(6px); box-shadow: 4px 4px 0 var(--accent); }
+  .contact-link-icon {
+    width: 36px; height: 36px; background: rgba(255,255,255,0.07);
+    display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-link-info { display: flex; flex-direction: column; }
+  .contact-link-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 0.15rem; }
+  .contact-link-value { font-weight: 500; font-size: 0.88rem; }
+
+  /* PROJECTS */
+  #projects { background: var(--card-bg); }
+
+  .meridian-intro {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: start; margin-bottom: 3.5rem;
+  }
+
+  .meridian-live {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #16a34a;
+    border: 1px solid rgba(22,163,74,0.3);
+    padding: 0.25rem 0.7rem; margin-bottom: 1.4rem;
+  }
+  .meridian-live::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: #16a34a; flex-shrink: 0;
+  }
+  .meridian-name {
+    font-family: var(--serif); font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+    line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 0.4rem;
+  }
+  .meridian-tagline {
+    font-size: 0.92rem; color: var(--warm-mid); font-weight: 300;
+    margin-bottom: 1.4rem; font-style: italic;
+  }
+  .meridian-desc {
+    font-size: 0.87rem; color: var(--warm-mid); line-height: 1.8;
+    font-weight: 300; margin-bottom: 2rem;
+  }
+  .meridian-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem; }
+  .meridian-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--ink); text-decoration: none;
+    border-bottom: 1.5px solid var(--accent); padding-bottom: 0.15rem;
+    transition: color 0.2s;
+  }
+  .meridian-link:hover { color: var(--accent); }
+
+  /* Dashboard mockup */
+  .meridian-dashboard {
+    background: #FAFAF8; border: 1px solid var(--rule);
+    box-shadow: 8px 16px 48px rgba(0,0,0,0.06); overflow: hidden;
+  }
+  .dash-topbar {
+    padding: 0.8rem 1.2rem; border-bottom: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: center;
+    background: #fff;
+  }
+  .dash-topbar-title { font-size: 0.7rem; font-weight: 500; color: var(--warm-mid); letter-spacing: 0.04em; }
+  .dash-pills { display: flex; gap: 2px; }
+  .dash-pill {
+    font-size: 0.62rem; padding: 0.18rem 0.5rem;
+    border: 1px solid var(--rule); background: transparent;
+    color: var(--warm-mid); cursor: default;
+  }
+  .dash-pill.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .dash-metrics {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--rule);
+  }
+  .dash-metric { background: #fff; padding: 0.9rem 1rem; border-top: 2px solid transparent; }
+  .dash-metric:nth-child(1) { border-color: #7c6fc9; }
+  .dash-metric:nth-child(2) { border-color: #d9973f; }
+  .dash-metric:nth-child(3) { border-color: #4aab7a; }
+  .dash-metric:nth-child(4) { border-color: #7c6fc9; }
+  .dash-metric-label {
+    font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--warm-mid); margin-bottom: 0.3rem; display: block;
+  }
+  .dash-metric-val {
+    font-family: var(--serif); font-size: 1.45rem; line-height: 1;
+    color: var(--ink); display: block;
+  }
+  .dash-metric-sub { font-size: 0.58rem; color: var(--warm-mid); display: block; margin-top: 0.2rem; }
+  .dash-lower { display: grid; grid-template-columns: 1fr auto; gap: 1px; background: var(--rule); }
+  .dash-log { background: #fff; padding: 0.85rem 1.2rem; }
+  .dash-log-title { font-size: 0.65rem; font-weight: 500; color: var(--ink); margin-bottom: 0.55rem; }
+  .dash-log-row {
+    display: grid; grid-template-columns: 5fr 3fr 1.5fr 1.5fr;
+    gap: 0.3rem; align-items: center;
+    font-size: 0.58rem; color: var(--warm-mid);
+    padding: 0.28rem 0; border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .dash-log-row:last-child { border-bottom: none; }
+  .dash-log-tenant { font-weight: 500; color: var(--ink); }
+  .dash-provider-badge {
+    display: inline-block; font-size: 0.54rem; padding: 0.1rem 0.35rem;
+    background: rgba(124,111,201,0.1); color: #7c6fc9; font-weight: 500;
+  }
+  .dash-provider-badge.openai { background: rgba(22,163,74,0.1); color: #16a34a; }
+  .dash-hit { color: #16a34a; font-weight: 600; font-size: 0.56rem; }
+  .dash-miss { color: var(--warm-mid); font-size: 0.56rem; }
+  .dash-ok { color: #16a34a; font-weight: 600; font-size: 0.58rem; }
+  .dash-health { background: #fff; padding: 0.85rem 1.2rem; min-width: 170px; }
+  .dash-health-title { font-size: 0.65rem; font-weight: 500; color: var(--ink); margin-bottom: 0.55rem; }
+  .dash-provider-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.42rem 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 0.63rem;
+  }
+  .dash-provider-row:last-of-type { border-bottom: none; }
+  .dash-provider-name { display: flex; align-items: center; gap: 0.4rem; font-weight: 500; color: var(--ink); }
+  .dash-dot { width: 6px; height: 6px; border-radius: 50%; background: #16a34a; flex-shrink: 0; }
+  .dash-closed { font-size: 0.56rem; font-weight: 700; color: #16a34a; letter-spacing: 0.08em; }
+  .dash-gateway-status {
+    padding: 0.5rem 0; margin-top: 0.3rem; font-size: 0.58rem; color: var(--warm-mid);
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+
+  /* Meridian feature grid */
+  .meridian-feat-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+    margin-top: 3.5rem;
+  }
+  .meridian-feat { background: var(--card-bg); padding: 1.8rem; transition: background 0.25s; cursor: default; }
+  .meridian-feat:hover { background: var(--paper); }
+  .meridian-feat-icon {
+    width: 32px; height: 32px; border: 1.5px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; margin-bottom: 1rem;
+  }
+  .meridian-feat-title { font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .meridian-feat-desc { font-size: 0.8rem; color: var(--warm-mid); line-height: 1.65; font-weight: 300; }
+
+  /* Meridian perf stats */
+  .meridian-perf {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    margin-top: 2rem; border: 1px solid var(--rule);
+  }
+  .meridian-perf-stat {
+    padding: 1.8rem; border-right: 1px solid var(--rule);
+    text-align: center; transition: background 0.2s; cursor: default;
+  }
+  .meridian-perf-stat:last-child { border-right: none; }
+  .meridian-perf-stat:hover { background: var(--paper); }
+  .meridian-perf-val {
+    font-family: var(--serif); font-size: 1.9rem; color: var(--accent);
+    display: block; margin-bottom: 0.35rem;
+  }
+  .meridian-perf-label { font-size: 0.68rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--warm-mid); }
+
+  /* FOOTER */
+  footer {
+    background: #0a0a0a; color: rgba(255,255,255,0.25);
+    text-align: center; padding: 2rem; font-size: 0.78rem; letter-spacing: 0.06em;
+  }
+  footer span { color: var(--accent); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; text-align: center; }
+    .hero-desc { max-width: 100%; }
+    .hero-ctas { justify-content: center; }
+    .hero-visual { display: none; }
+    section { padding: 3.5rem 1.5rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .meridian-intro { grid-template-columns: 1fr; gap: 2.5rem; }
+    .meridian-dashboard { display: none; }
+    .meridian-perf { grid-template-columns: repeat(3, 1fr); }
+    .meridian-perf-stat { border-bottom: 1px solid var(--rule); }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">Stefan Kirov</a>
+  <ul class="nav-links">
+    <li><a href="#offer">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#contact">Work With Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <h1>Senior Engineering<br><em>Consultant</em><br>&amp; Team Lead</h1>
+    <p class="hero-desc">I partner with product teams and founders to architect scalable backend systems, lead delivery, and build cloud-native platforms that grow with your business. 13+ years of distributed systems expertise — now expanding into Agentic AI and MCP tooling.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Start a Conversation ↓</a>
+      <a href="#offer" class="btn-secondary">What I Offer</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <p class="hero-card-label">What I bring to your table</p>
+      <div class="stat-row">
+        <div class="stat-item">
+          <span class="stat-num">13+</span>
+          <span class="stat-label">Yrs. Exp.</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">M+</span>
+          <span class="stat-label">Users Scaled</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">IC→</span>
+          <span class="stat-label">Architect</span>
+        </div>
+      </div>
+      <div class="tech-chips">
+        <span class="chip">Azure</span>
+        <span class="chip">C# / .NET</span>
+        <span class="chip">Node.js</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">Python</span>
+        <span class="chip">Microservices</span>
+        <span class="chip">Docker</span>
+        <span class="chip">Scrum / SAFe</span>
+        <span class="chip hot">Agentic AI</span>
+        <span class="chip hot">MCP</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I OFFER -->
+<section id="offer">
+ 
+  <h2 class="section-title">What I Can Do For You</h2>
+
+  <div class="offer-grid">
+    <div class="offer-block reveal">
+      <div class="offer-icon">⬡</div>
+      <p class="offer-title">System Architecture</p>
+      <p class="offer-desc">Design and review of distributed microservices platforms — from greenfield architecture to legacy modernisation. I'll make sure your system scales before it has to.</p>
+    </div>
+    <div class="offer-block reveal">
+      <div class="offer-icon">☁</div>
+      <p class="offer-title">Cloud-Native Delivery</p>
+      <p class="offer-desc">End-to-end Azure cloud infrastructure — App Services, Container Apps, Functions, API Management, Cosmos DB — designed production-ready from day one.</p>
+    </div>
+    <div class="offer-block reveal">
+      <div class="offer-icon">⚡</div>
+      <p class="offer-title">High-Throughput APIs</p>
+      <p class="offer-desc">Engineering performant REST APIs and third-party integrations built to hold up under real load. I've shipped systems serving millions of concurrent users.</p>
+    </div>
+    <div class="offer-block reveal">
+      <div class="offer-icon">▲</div>
+      <p class="offer-title">Team Lead &amp; Scrum Delivery</p>
+      <p class="offer-desc">I can embed as a hands-on tech lead or run your full Scrum cycle — sprint planning, backlog refinement, standups, retrospectives, and stakeholder reporting — while still writing code.</p>
+    </div>
+    <div class="offer-block reveal">
+      <div class="offer-icon">◎</div>
+      <p class="offer-title">Observability &amp; SRE</p>
+      <p class="offer-desc">Building reliability into your platform through Grafana dashboards, Loki log aggregation, alerting pipelines, and runbooks that actually reduce incidents.</p>
+    </div>
+    <div class="offer-block reveal">
+      <div class="offer-icon">✦</div>
+      <p class="offer-title">Agentic AI &amp; MCP</p>
+      <p class="offer-desc">Helping teams design and integrate agentic AI systems — LLM-powered backends, Model Context Protocol (MCP) server architecture, tool-use orchestration, and AI workflow automation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW I WORK -->
+<section id="process">
+  <h2 class="section-title">How I Work</h2>
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <p class="process-step-title">Discovery &amp; Scoping</p>
+      <p class="process-step-desc">We start with a focused session to understand your system, your team, and the problems you're actually trying to solve — not just the ones on the surface.</p>
+    </div>
+    <div class="process-step reveal">
+      <p class="process-step-title">Architecture &amp; Planning</p>
+      <p class="process-step-desc">I produce clear architecture proposals, technical roadmaps, and delivery plans with realistic scope. No hand-wavy diagrams — decisions you can build on immediately.</p>
+    </div>
+    <div class="process-step reveal">
+      <p class="process-step-title">Embedded Delivery</p>
+      <p class="process-step-desc">I join your team in-sprint, write production code, run Scrum ceremonies, and mentor engineers as we ship together. Async-first, remote-comfortable, across time zones.</p>
+    </div>
+    <div class="process-step reveal">
+      <p class="process-step-title">Handoff &amp; Continuity</p>
+      <p class="process-step-desc">Every engagement ends with thorough documentation, knowledge transfer, and a system your team owns confidently — not a black box only I can maintain.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+ 
+  <h2 class="section-title">Selected Projects</h2>
+
+  <div class="meridian-intro reveal">
+    <div>
+      <div class="meridian-live">Live</div>
+      <h3 class="meridian-name">Meridian Gateway</h3>
+      <p class="meridian-tagline">AI infrastructure for engineering teams</p>
+      <p class="meridian-desc">Meridian sits between your teams and the AI models they use — giving you control over who can access AI, what they can spend, and what happens when something goes wrong. Built for organisations where AI is becoming critical infrastructure, not just an experiment.</p>
+      <div class="meridian-chips">
+        <span class="chip">TypeScript</span>
+        <span class="chip">Fastify 5</span>
+        <span class="chip">PostgreSQL</span>
+        <span class="chip">Redis</span>
+        <span class="chip">Next.js 15</span>
+        <span class="chip">Docker</span>
+        <span class="chip hot">OpenAI</span>
+        <span class="chip hot">Anthropic</span>
+      </div>
+      <a href="#contact" class="meridian-link">Discuss this project →</a>
+    </div>
+
+    <div class="meridian-dashboard">
+      <div class="dash-topbar">
+        <span class="dash-topbar-title">Admin Dashboard · last 30 days</span>
+        <div class="dash-pills">
+          <span class="dash-pill">7d</span>
+          <span class="dash-pill active">30d</span>
+          <span class="dash-pill">90d</span>
+        </div>
+      </div>
+      <div class="dash-metrics">
+        <div class="dash-metric">
+          <span class="dash-metric-label">Total Requests</span>
+          <span class="dash-metric-val">2,015</span>
+          <span class="dash-metric-sub">last 30 days</span>
+        </div>
+        <div class="dash-metric">
+          <span class="dash-metric-label">Total Cost</span>
+          <span class="dash-metric-val">$47.97</span>
+          <span class="dash-metric-sub">last 30 days</span>
+        </div>
+        <div class="dash-metric">
+          <span class="dash-metric-label">Cache Hit Rate</span>
+          <span class="dash-metric-val">25.5%</span>
+          <span class="dash-metric-sub">saving $12.21 / 30d</span>
+        </div>
+        <div class="dash-metric">
+          <span class="dash-metric-label">Active Tenants</span>
+          <span class="dash-metric-val">6</span>
+          <span class="dash-metric-sub">All within budget</span>
+        </div>
+      </div>
+      <div class="dash-lower">
+        <div class="dash-log">
+          <p class="dash-log-title">Recent Requests</p>
+          <div class="dash-log-row">
+            <span class="dash-log-tenant">Acme Corp <span style="font-weight:300;color:var(--warm-mid)">· Claude Opus 4</span></span>
+            <span class="dash-provider-badge">anthropic</span>
+            <span class="dash-miss">MISS</span>
+            <span class="dash-ok">200</span>
+          </div>
+          <div class="dash-log-row">
+            <span class="dash-log-tenant">Gamma AI <span style="font-weight:300;color:var(--warm-mid)">· Claude Opus 4</span></span>
+            <span class="dash-provider-badge">anthropic</span>
+            <span class="dash-miss">MISS</span>
+            <span class="dash-ok">200</span>
+          </div>
+          <div class="dash-log-row">
+            <span class="dash-log-tenant">Beta Labs <span style="font-weight:300;color:var(--warm-mid)">· Claude Haiku 3.5</span></span>
+            <span class="dash-provider-badge">anthropic</span>
+            <span class="dash-hit">HIT</span>
+            <span class="dash-ok">200</span>
+          </div>
+          <div class="dash-log-row">
+            <span class="dash-log-tenant">Acme Corp <span style="font-weight:300;color:var(--warm-mid)">· GPT-4o</span></span>
+            <span class="dash-provider-badge openai">openai</span>
+            <span class="dash-miss">MISS</span>
+            <span class="dash-ok">200</span>
+          </div>
+        </div>
+        <div class="dash-health">
+          <p class="dash-health-title">Provider Health</p>
+          <div class="dash-provider-row">
+            <span class="dash-provider-name"><span class="dash-dot"></span>OpenAI</span>
+            <span class="dash-closed">CLOSED</span>
+          </div>
+          <div class="dash-provider-row">
+            <span class="dash-provider-name"><span class="dash-dot"></span>Anthropic</span>
+            <span class="dash-closed">CLOSED</span>
+          </div>
+          <div class="dash-gateway-status"><span class="dash-dot"></span>Gateway operational · v1.0.0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="meridian-feat-grid">
+    <div class="meridian-feat reveal">
+      <div class="meridian-feat-icon">⬡</div>
+      <p class="meridian-feat-title">Zero Disruption</p>
+      <p class="meridian-feat-desc">Change one URL. Any app already calling OpenAI works immediately — no new SDKs, no code changes, no migration project.</p>
+    </div>
+    <div class="meridian-feat reveal">
+      <div class="meridian-feat-icon">◈</div>
+      <p class="meridian-feat-title">Per-Team Budgets</p>
+      <p class="meridian-feat-desc">Each team gets a monthly spend limit. Alerts at threshold, clean rejection at cap — no more surprise invoices from a runaway integration.</p>
+    </div>
+    <div class="meridian-feat reveal">
+      <div class="meridian-feat-icon">↻</div>
+      <p class="meridian-feat-title">Automatic Failover</p>
+      <p class="meridian-feat-desc">Meridian watches provider health continuously. When OpenAI has an outage, traffic routes to Anthropic automatically — no human intervention needed.</p>
+    </div>
+    <div class="meridian-feat reveal">
+      <div class="meridian-feat-icon">◎</div>
+      <p class="meridian-feat-title">Isolated API Keys</p>
+      <p class="meridian-feat-desc">Every team gets its own key, revocable in seconds. One compromised credential affects nothing else. Provider keys never leave the gateway.</p>
+    </div>
+    <div class="meridian-feat reveal">
+      <div class="meridian-feat-icon">⚡</div>
+      <p class="meridian-feat-title">Smart Caching</p>
+      <p class="meridian-feat-desc">Exact and semantic caching returns repeated answers in under 30ms with no provider call. Typical teams save 20–40% on AI spend through caching alone.</p>
+    </div>
+    <div class="meridian-feat reveal">
+      <div class="meridian-feat-icon">▤</div>
+      <p class="meridian-feat-title">Full Audit Log</p>
+      <p class="meridian-feat-desc">Every request recorded: team, model, cost, latency, cache result. Queryable by tenant and date range — ready for compliance reviews and finance attribution.</p>
+    </div>
+  </div>
+
+  <div class="meridian-perf reveal">
+    <div class="meridian-perf-stat">
+      <span class="meridian-perf-val">&lt; 50ms</span>
+      <span class="meridian-perf-label">Added latency</span>
+    </div>
+    <div class="meridian-perf-stat">
+      <span class="meridian-perf-val">&lt; 30ms</span>
+      <span class="meridian-perf-label">Cached responses</span>
+    </div>
+    <div class="meridian-perf-stat">
+      <span class="meridian-perf-val">20–40%</span>
+      <span class="meridian-perf-label">Typical cost reduction</span>
+    </div>
+    <div class="meridian-perf-stat">
+      <span class="meridian-perf-val">99.9%</span>
+      <span class="meridian-perf-label">Availability target</span>
+    </div>
+    <div class="meridian-perf-stat">
+      <span class="meridian-perf-val">&lt; 2 hrs</span>
+      <span class="meridian-perf-label">Time to deploy</span>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="stack">
+ 
+  <h2 class="section-title">Technologies &amp; Tools</h2>
+  <div class="stack-groups">
+    <div class="stack-group reveal">
+      <p class="stack-group-label">Languages</p>
+      <div class="stack-items">
+        <span class="stack-tag">C#</span>
+        <span class="stack-tag">.NET / ASP.NET</span>
+        <span class="stack-tag">Node.js</span>
+        <span class="stack-tag">TypeScript</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">Python</span>
+      </div>
+    </div>
+    <div class="stack-group reveal">
+      <p class="stack-group-label">Cloud &amp; Infrastructure</p>
+      <div class="stack-items">
+        <span class="stack-tag">Azure App Services</span>
+        <span class="stack-tag">Azure Functions</span>
+        <span class="stack-tag">Container Apps</span>
+        <span class="stack-tag">API Management</span>
+        <span class="stack-tag">Cosmos DB</span>
+      </div>
+    </div>
+    <div class="stack-group reveal">
+      <p class="stack-group-label">Data</p>
+      <div class="stack-items">
+        <span class="stack-tag">MongoDB</span>
+        <span class="stack-tag">SQL Server</span>
+        <span class="stack-tag">Redis</span>
+      </div>
+    </div>
+    <div class="stack-group reveal">
+      <p class="stack-group-label">DevOps &amp; Observability</p>
+      <div class="stack-items">
+        <span class="stack-tag">Docker</span>
+        <span class="stack-tag">GitHub Actions</span>
+        <span class="stack-tag">CI/CD</span>
+        <span class="stack-tag">Grafana</span>
+        <span class="stack-tag">Loki</span>
+      </div>
+    </div>
+    <div class="stack-group reveal">
+      <p class="stack-group-label">Architecture &amp; Delivery</p>
+      <div class="stack-items">
+        <span class="stack-tag">Microservices</span>
+        <span class="stack-tag">REST APIs</span>
+        <span class="stack-tag">Event-Driven Design</span>
+        <span class="stack-tag">Scrum</span>
+        <span class="stack-tag">SAFe Agile</span>
+      </div>
+    </div>
+    <div class="stack-group reveal">
+      <p class="stack-group-label">Agentic AI — Active Exploration</p>
+      <div class="stack-items">
+        <span class="stack-tag emerging">MCP (Model Context Protocol)</span>
+        <span class="stack-tag emerging">Agentic Systems</span>
+        <span class="stack-tag emerging">LLM Integration</span>
+        <span class="stack-tag emerging">AI Tool Orchestration</span>
+        <span class="stack-tag emerging">AI Workflow Automation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+ 
+  <div class="contact-grid">
+    <div class="reveal">
+      <h2 class="contact-intro">Ready to work with<br>someone who<br><em>actually ships?</em></h2>
+      <p class="contact-blurb">Whether you need an architect to design your next platform, a tech lead to run your delivery, or an engineering partner to help you move faster with AI — I'd love to hear about your project. Based in Las Vegas, NV. Available remotely, worldwide.</p>
+    </div>
+    <div class="contact-links reveal">
+      <a href="mailto:stefankirov@gmail.com" class="contact-link">
+        <span class="contact-link-icon">✉</span>
+        <span class="contact-link-info">
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-value">stefankirov@gmail.com</span>
+        </span>
+      </a>
+      <a href="https://linkedin.com/in/stefan-kirov" target="_blank" class="contact-link">
+        <span class="contact-link-icon">in</span>
+        <span class="contact-link-info">
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-value">linkedin.com/in/stefan-kirov</span>
+        </span>
+      </a>
+      
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Stefan Kirov &nbsp;·&nbsp; Independent Consultant &nbsp;·&nbsp; Las Vegas, NV &nbsp;·&nbsp; </p>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 90);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+</script>
+</body>
+</html>
