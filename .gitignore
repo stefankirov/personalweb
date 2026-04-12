@@ -1,0 +1,57 @@
+############################
+# OS / SYSTEM
+############################
+.DS_Store
+Thumbs.db
+
+############################
+# ENV / SECRETS
+############################
+.env
+.env.*
+*.local
+
+############################
+# LOGS
+############################
+*.log
+
+############################
+# NODE (if you ever add tooling)
+############################
+node_modules/
+dist/
+build/
+
+############################
+# TERRAFORM (CRITICAL)
+############################
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform lock file (optional)
+# Keep this if you want reproducible builds
+# Remove comment to IGNORE it instead
+# .terraform.lock.hcl
+
+############################
+# IDE / EDITOR
+############################
+.vscode/
+.idea/
+*.swp
+*.swo
+
+############################
+# MISC
+############################
+*.zip
+*.tar
+*.gz
+terraform/.terraform.lock.hcl
