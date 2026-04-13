@@ -1,6 +1,6 @@
 import { initRevealAnimations } from '../utils.js';
 
-export const title = 'Stefan Kirov — Independent Engineering Consultant';
+export const title = 'Stefan Kirov — Software Engineer, Team Lead, Architect';
 
 export function render() {
   return `
@@ -138,10 +138,14 @@ export function render() {
       </svg>
     </div>
     <h1>Senior Engineering<br><em>Consultant</em><br>&amp; Team Lead</h1>
-    <p class="hero-desc">I partner with product teams and founders to architect scalable backend systems, lead delivery, and build cloud-native platforms that grow with your business. 13+ years of distributed systems expertise — now expanding into Agentic AI and MCP tooling.</p>
+    <p class="hero-desc">I design and scale backend systems that handle millions of users and billions of requests — with a focus on performance, reliability, and cost efficiency.
+13+ years building production systems across Azure, microservices, and high-throughput APIs.
+Now specializing in AI infrastructure, agentic systems, and LLM-powered platforms.</p>
+<p class="hero-desc">
+Scaled API platforms handling 3B+ monthly requests; Designed cloud architectures with high availability and fault tolerance; Reduced infrastructure costs through caching, observability, and smart routing; Led teams delivering production systems end-to-end (architecture → deployment)</p>
     <div class="hero-ctas">
-      <a href="/#contact" class="btn-primary" data-link>Start a Conversation ↓</a>
-      <a href="/#offer" class="btn-secondary" data-link>What I Offer</a>
+      <a href="/#contact" class="btn-primary" data-link>Let's Talk ↓</a>
+      <a href="/#offer" class="btn-secondary" data-link>What I Do</a>
     </div>
   </div>
   <div class="hero-visual">
@@ -177,39 +181,39 @@ export function render() {
   </div>
 </section>
 
-<!-- WHAT I OFFER -->
+<!-- WHAT I DO -->
 <section id="offer">
-  <h2 class="section-title">What I Can Do For You</h2>
+  <h2 class="section-title">What I Do</h2>
   <div class="offer-grid">
     <div class="offer-block reveal">
       <div class="offer-icon">⬡</div>
       <p class="offer-title">System Architecture</p>
-      <p class="offer-desc">Design and review of distributed microservices platforms — from greenfield architecture to legacy modernisation. I'll make sure your system scales before it has to.</p>
+      <p class="offer-desc">Designing distributed systems that scale under real-world load — not just diagrams. From greenfield builds to breaking down monoliths, I focus on throughput, resilience, and long-term maintainability.</p>
     </div>
     <div class="offer-block reveal">
       <div class="offer-icon">☁</div>
-      <p class="offer-title">Cloud-Native Delivery</p>
-      <p class="offer-desc">End-to-end Azure cloud infrastructure — App Services, Container Apps, Functions, API Management, Cosmos DB — designed production-ready from day one.</p>
+      <p class="offer-title">Cloud-Native Platforms</p>
+      <p class="offer-desc">Production-ready cloud systems using Azure. Built for scalability, observability, and cost control from day one.</p>
     </div>
     <div class="offer-block reveal">
       <div class="offer-icon">⚡</div>
-      <p class="offer-title">High-Throughput APIs</p>
-      <p class="offer-desc">Engineering performant REST APIs and third-party integrations built to hold up under real load. I've shipped systems serving millions of concurrent users.</p>
+      <p class="offer-title">High-Scale APIs</p>
+      <p class="offer-desc">Design and optimization of APIs handling high concurrency and large traffic volumes. Latency, caching, and failure handling are built in — not added later.</p>
     </div>
     <div class="offer-block reveal">
       <div class="offer-icon">▲</div>
-      <p class="offer-title">Team Lead &amp; Scrum Delivery</p>
-      <p class="offer-desc">I can embed as a hands-on tech lead or run your full Scrum cycle — sprint planning, backlog refinement, standups, retrospectives, and stakeholder reporting — while still writing code.</p>
+      <p class="offer-title">Engineering Leadership</p>
+      <p class="offer-desc">Hands-on tech leadership: architecture decisions, mentoring, and delivery execution. I don’t just guide — I ship production code with the team.</p>
     </div>
     <div class="offer-block reveal">
       <div class="offer-icon">◎</div>
-      <p class="offer-title">Observability &amp; SRE</p>
-      <p class="offer-desc">Building reliability into your platform through Grafana dashboards, Loki log aggregation, alerting pipelines, and runbooks that actually reduce incidents.</p>
+      <p class="offer-title">Observability & Reliability (SRE)</p>
+      <p class="offer-desc">Full visibility into your system: logs, metrics, alerting, and incident response. Systems designed to fail gracefully and recover fast.</p>
     </div>
     <div class="offer-block reveal">
       <div class="offer-icon">✦</div>
-      <p class="offer-title">Agentic AI &amp; MCP</p>
-      <p class="offer-desc">Helping teams design and integrate agentic AI systems — LLM-powered backends, Model Context Protocol (MCP) server architecture, tool-use orchestration, and AI workflow automation.</p>
+      <p class="offer-title">AI Infrastructure & Agentic Systems</p>
+      <p class="offer-desc">Designing backend systems for AI: LLM integrations, MCP architecture, tool orchestration, and cost-aware AI workflows.</p>
     </div>
   </div>
 </section>
@@ -245,7 +249,7 @@ export function render() {
     <div>
       <div class="meridian-live">Live</div>
       <h3 class="meridian-name">Meridian Gateway</h3>
-      <p class="meridian-tagline">AI infrastructure for engineering teams</p>
+      <p class="meridian-tagline">AI Infrastructure Platform for Controlled, Scalable LLM Usage</p>
       <p class="meridian-desc">Meridian sits between your teams and the AI models they use — giving you control over who can access AI, what they can spend, and what happens when something goes wrong. Built for organisations where AI is becoming critical infrastructure, not just an experiment.</p>
       <div class="meridian-chips">
         <span class="chip">TypeScript</span>
@@ -397,7 +401,11 @@ export function render() {
 
 <!-- TECH STACK -->
 <section id="stack">
-  <h2 class="section-title">Technologies &amp; Tools</h2>
+  <details class="stack-details">
+    <summary class="stack-summary">
+      <h2 class="section-title">Technologies &amp; Tools</h2>
+      <span class="stack-chevron" aria-hidden="true"></span>
+    </summary>
   <div class="stack-groups">
     <div class="stack-group reveal">
       <p class="stack-group-label">Languages</p>
@@ -459,6 +467,7 @@ export function render() {
       </div>
     </div>
   </div>
+  </details>
 </section>
 
 <!-- CONTACT -->
@@ -466,7 +475,7 @@ export function render() {
   <div class="contact-grid">
     <div class="reveal">
       <h2 class="contact-intro">Ready to work with<br>someone who<br><em>actually ships?</em></h2>
-      <p class="contact-blurb">Whether you need an architect to design your next platform, a tech lead to run your delivery, or an engineering partner to help you move faster with AI — I'd love to hear about your project. Based in Las Vegas, NV. Available remotely, worldwide.</p>
+      <p class="contact-blurb">Whether you need an architect to design your next platform, a tech lead to run your delivery, or an engineering partner to help you move faster with AI — I'd love to hear about your project. Based in Las Vegas, NV. Available remotely.</p>
     </div>
     <div class="contact-links reveal">
       <a href="https://mailstefankirov.netlify.app/" target="_blank" class="contact-link">

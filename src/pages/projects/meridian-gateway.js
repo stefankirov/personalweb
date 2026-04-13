@@ -31,81 +31,20 @@ export function render() {
     </div>
   </div>
 
-  <!-- Full-width dashboard -->
-  <div class="project-dashboard-wrap reveal">
-    <div class="meridian-dashboard" style="max-width:100%">
-      <div class="dash-topbar">
-        <span class="dash-topbar-title">Admin Dashboard · last 30 days</span>
-        <div class="dash-pills">
-          <span class="dash-pill">7d</span>
-          <span class="dash-pill active">30d</span>
-          <span class="dash-pill">90d</span>
-        </div>
-      </div>
-      <div class="dash-metrics">
-        <div class="dash-metric">
-          <span class="dash-metric-label">Total Requests</span>
-          <span class="dash-metric-val">2,015</span>
-          <span class="dash-metric-sub">last 30 days</span>
-        </div>
-        <div class="dash-metric">
-          <span class="dash-metric-label">Total Cost</span>
-          <span class="dash-metric-val">$47.97</span>
-          <span class="dash-metric-sub">last 30 days</span>
-        </div>
-        <div class="dash-metric">
-          <span class="dash-metric-label">Cache Hit Rate</span>
-          <span class="dash-metric-val">25.5%</span>
-          <span class="dash-metric-sub">saving $12.21 / 30d</span>
-        </div>
-        <div class="dash-metric">
-          <span class="dash-metric-label">Active Tenants</span>
-          <span class="dash-metric-val">6</span>
-          <span class="dash-metric-sub">All within budget</span>
-        </div>
-      </div>
-      <div class="dash-lower">
-        <div class="dash-log">
-          <p class="dash-log-title">Recent Requests</p>
-          <div class="dash-log-row">
-            <span class="dash-log-tenant">Acme Corp <span style="font-weight:300;color:var(--warm-mid)">· Claude Opus 4</span></span>
-            <span class="dash-provider-badge">anthropic</span>
-            <span class="dash-miss">MISS</span>
-            <span class="dash-ok">200</span>
-          </div>
-          <div class="dash-log-row">
-            <span class="dash-log-tenant">Gamma AI <span style="font-weight:300;color:var(--warm-mid)">· Claude Opus 4</span></span>
-            <span class="dash-provider-badge">anthropic</span>
-            <span class="dash-miss">MISS</span>
-            <span class="dash-ok">200</span>
-          </div>
-          <div class="dash-log-row">
-            <span class="dash-log-tenant">Beta Labs <span style="font-weight:300;color:var(--warm-mid)">· Claude Haiku 3.5</span></span>
-            <span class="dash-provider-badge">anthropic</span>
-            <span class="dash-hit">HIT</span>
-            <span class="dash-ok">200</span>
-          </div>
-          <div class="dash-log-row">
-            <span class="dash-log-tenant">Acme Corp <span style="font-weight:300;color:var(--warm-mid)">· GPT-4o</span></span>
-            <span class="dash-provider-badge openai">openai</span>
-            <span class="dash-miss">MISS</span>
-            <span class="dash-ok">200</span>
-          </div>
-        </div>
-        <div class="dash-health">
-          <p class="dash-health-title">Provider Health</p>
-          <div class="dash-provider-row">
-            <span class="dash-provider-name"><span class="dash-dot"></span>OpenAI</span>
-            <span class="dash-closed">Healthy</span>
-          </div>
-          <div class="dash-provider-row">
-            <span class="dash-provider-name"><span class="dash-dot"></span>Anthropic</span>
-            <span class="dash-closed">Healthy</span>
-          </div>
-          <div class="dash-gateway-status"><span class="dash-dot"></span>Gateway operational · v1.0.0</div>
-        </div>
-      </div>
-    </div>
+  <!-- Screenshots -->
+  <div class="meridian-screenshots reveal">
+    <img
+      src="/meridian1.png"
+      alt="Meridian Gateway — Admin Dashboard overview"
+      class="meridian-screenshot"
+      loading="eager"
+    />
+    <img
+      src="/meridian2.png"
+      alt="Meridian Gateway — Request Log"
+      class="meridian-screenshot"
+      loading="lazy"
+    />
   </div>
 
   <!-- Overview + Stats -->
@@ -113,8 +52,8 @@ export function render() {
     <div class="project-overview-text reveal">
       <p class="project-overview-label">Overview</p>
       <p>Meridian sits between your teams and the AI models they use — giving you control over who can access AI, what they can spend, and what happens when something goes wrong.</p>
-      <p>Built for organisations where AI is becoming critical infrastructure, not just an experiment. Engineering teams shouldn't have to think about which provider is up, whether someone blew the budget, or why a request silently failed at 2am.</p>
-      <p>The gateway is a transparent proxy — drop it in front of any OpenAI-compatible client and you get observability, cost controls, and failover with no code changes in the calling app.</p>
+      <p>Built for organisations where AI is becoming critical infrastructure, not just an experiment.</p>
+      <p>The gateway is a transparent proxy — drop it in front of any OpenAI, Anthropic or other - compatible client and you get observability, cost controls, and failover with no code changes in the calling app.</p>
     </div>
     <div class="project-overview-sidebar reveal">
       <p class="project-overview-label">At a Glance</p>
@@ -206,13 +145,25 @@ export function render() {
   <!-- Architecture (placeholder) -->
   <div class="project-section">
     <h2 class="project-section-title">Architecture &amp; How It Works</h2>
-    <p class="project-placeholder">Architecture details, diagrams, and technical deep-dive coming soon.</p>
+    <a href="/#contact" class="btn-primary" data-link>Let's Talk ↓</a>
   </div>
 
-  <!-- Challenges (placeholder) -->
+  <!-- Challenges & Decisions -->
   <div class="project-section project-section--alt">
     <h2 class="project-section-title">Challenges &amp; Decisions</h2>
-    <p class="project-placeholder">Key engineering trade-offs, interesting problems solved, and lessons learned. Semantic caching implementation, multi-tenant key isolation model, automatic failover detection approach.</p>
+    <div class="meridian-decisions reveal" style="margin-top:0">
+      <div class="meridian-decisions-col">
+        <p class="meridian-decisions-heading">Key Engineering Decisions</p>
+        <ul class="meridian-decisions-list">
+          <li><span class="meridian-decision-arrow">→</span><span><strong>Provider abstraction layer</strong> — seamless failover between OpenAI and Anthropic (add new providers easily)</span></li>
+          <li><span class="meridian-decision-arrow">→</span><span><strong>Semantic + exact caching</strong> — reduce repeated calls</span></li>
+          <li><span class="meridian-decision-arrow">→</span><span><strong>Tenant isolation model</strong> — per-team API keys and budgets</span></li>
+          <li><span class="meridian-decision-arrow">→</span><span><strong>Observability pipeline</strong> — full audit logs + cost attribution</span></li>
+          <li><span class="meridian-decision-arrow">→</span><span><strong>Drop-in adoption</strong> — no SDKs, no client changes required</span></li>
+        </ul>
+      </div>
+     
+    </div>
   </div>
 
   <!-- CTA -->

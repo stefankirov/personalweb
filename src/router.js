@@ -24,7 +24,7 @@ async function navigate(href, pushState = true) {
 
   currentPage?.unmount?.();
   document.getElementById('app').innerHTML = page.render();
-  document.title = page.title ?? 'Stefan Kirov — Independent Engineering Consultant';
+  document.title = page.title ?? 'Stefan Kirov — Senior Software Engineer & Team Lead — Cloud, Distributed Systems, AI Infrastructure';
   currentPath = path;
   currentPage = page;
   page.mount?.();
