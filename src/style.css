@@ -429,6 +429,13 @@ section { padding: 5rem 4rem; }
 }
 .meridian-feat-title { font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.5rem; }
 .meridian-feat-desc { font-size: 0.8rem; color: var(--warm-mid); line-height: 1.65; font-weight: 300; }
+.meridian-feat-desc code { font-size: 0.78rem; color: var(--ink); background: var(--rule); padding: 0.1em 0.35em; }
+.meridian-feat-badge {
+  font-family: var(--sans, sans-serif); font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid var(--accent);
+  padding: 0.15em 0.5em; vertical-align: middle; margin-left: 0.5rem;
+}
 
 /* Meridian perf stats */
 .meridian-perf {

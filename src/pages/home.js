@@ -165,18 +165,7 @@ Scaled API platforms handling 3B+ monthly requests; Designed cloud architectures
           <span class="stat-label">Industries</span>
         </div>
       </div>
-      <div class="tech-chips">
-        <span class="chip">Azure</span>
-        <span class="chip">C# / .NET</span>
-        <span class="chip">Node.js</span>
-        <span class="chip">TypeScript</span>
-        <span class="chip">Python</span>
-        <span class="chip">Microservices</span>
-        <span class="chip">Docker</span>
-        <span class="chip">Scrum / SAFe</span>
-        <span class="chip hot">Agentic AI</span>
-        <span class="chip hot">MCP</span>
-      </div>
+      
     </div>
   </div>
 </section>
@@ -251,16 +240,6 @@ Scaled API platforms handling 3B+ monthly requests; Designed cloud architectures
       <h3 class="meridian-name">Meridian Gateway</h3>
       <p class="meridian-tagline">AI Infrastructure Platform for Controlled, Scalable LLM Usage</p>
       <p class="meridian-desc">Meridian sits between your teams and the AI models they use — giving you control over who can access AI, what they can spend, and what happens when something goes wrong. Built for organisations where AI is becoming critical infrastructure, not just an experiment.</p>
-      <div class="meridian-chips">
-        <span class="chip">TypeScript</span>
-        <span class="chip">Fastify 5</span>
-        <span class="chip">PostgreSQL</span>
-        <span class="chip">Redis</span>
-        <span class="chip">Next.js 15</span>
-        <span class="chip">Docker</span>
-        <span class="chip hot">OpenAI</span>
-        <span class="chip hot">Anthropic</span>
-      </div>
       <div class="meridian-links">
         <a href="/projects/meridian-gateway" class="btn-secondary" data-link>View case study →</a>
         <a href="/#contact" class="meridian-link" data-link>Discuss this project →</a>
@@ -373,6 +352,12 @@ Scaled API platforms handling 3B+ monthly requests; Designed cloud architectures
       <p class="meridian-feat-title">Full Audit Log</p>
       <p class="meridian-feat-desc">Every request recorded: team, model, cost, latency, cache result. Queryable by tenant and date range — ready for compliance reviews and finance attribution.</p>
     </div>
+    <div class="meridian-feat reveal">
+      <div class="meridian-feat-icon">▤</div>
+      <p class="meridian-feat-title">Langfuse Integration</p>
+      <p class="meridian-feat-desc">Deep observability, prompt management & versioning powered by Langfuse, enabled per-tenant via feature flags. Every request generates a full trace — all linked to prompt versions for easy A/B analysis. Allows prompt versioning and changes to be updated instantly without redeployments of your code.</p>
+    </div>
+    
   </div>
 
   <div class="meridian-perf reveal">
@@ -421,11 +406,8 @@ Scaled API platforms handling 3B+ monthly requests; Designed cloud architectures
     <div class="stack-group reveal">
       <p class="stack-group-label">Cloud &amp; Infrastructure</p>
       <div class="stack-items">
-        <span class="stack-tag">Azure App Services</span>
-        <span class="stack-tag">Azure Functions</span>
-        <span class="stack-tag">Container Apps</span>
-        <span class="stack-tag">API Management</span>
-        <span class="stack-tag">Cosmos DB</span>
+        <span class="stack-tag">Azure Cloud Infrastructure and Services</span>
+        
       </div>
     </div>
     <div class="stack-group reveal">
@@ -434,6 +416,8 @@ Scaled API platforms handling 3B+ monthly requests; Designed cloud architectures
         <span class="stack-tag">MongoDB</span>
         <span class="stack-tag">SQL Server</span>
         <span class="stack-tag">Redis</span>
+        <span class="stack-tag">Cosmos DB</span>
+        <span class="stack-tag">PostgreSQL</span>
       </div>
     </div>
     <div class="stack-group reveal">

@@ -16,16 +16,7 @@ export function render() {
     <div class="meridian-live">Live</div>
     <h1 class="project-header-title">Meridian Gateway</h1>
     <p class="project-header-tagline">AI infrastructure for engineering teams</p>
-    <div class="meridian-chips">
-      <span class="chip">TypeScript</span>
-      <span class="chip">Fastify 5</span>
-      <span class="chip">PostgreSQL</span>
-      <span class="chip">Redis</span>
-      <span class="chip">Next.js 15</span>
-      <span class="chip">Docker</span>
-      <span class="chip hot">OpenAI</span>
-      <span class="chip hot">Anthropic</span>
-    </div>
+ 
     <div class="project-header-links">
       <a href="/#contact" class="btn-primary" data-link>Discuss this project ↓</a>
     </div>
@@ -111,6 +102,11 @@ export function render() {
         <div class="meridian-feat-icon">▤</div>
         <p class="meridian-feat-title">Full Audit Log</p>
         <p class="meridian-feat-desc">Every request recorded: team, model, cost, latency, cache result. Queryable by tenant and date range — ready for compliance reviews and finance attribution.</p>
+      </div>
+      <div class="meridian-feat reveal">
+        <div class="meridian-feat-icon">◬</div>
+        <p class="meridian-feat-title">Langfuse Integration</p>
+        <p class="meridian-feat-desc">Deep observability, prompt management & versioning powered by Langfuse, enabled per-tenant via feature flags. Every request generates a full trace — all linked to prompt versions for easy A/B analysis. Allows prompt versioning and changes to be updated instantly without redeployments of your code.</p>
       </div>
     </div>
   </div>
