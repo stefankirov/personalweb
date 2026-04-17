@@ -1,10 +1,13 @@
 import './style.css';
 import { renderNav } from './components/nav.js';
 import { renderFooter } from './components/footer.js';
+import { renderChat, mountChat } from './components/chat.js';
 import { initRouter } from './router.js';
 
 document.getElementById('navbar-mount').innerHTML = renderNav();
 document.getElementById('footer-mount').innerHTML = renderFooter();
+document.getElementById('chat-mount').innerHTML = renderChat();
+mountChat();
 
 // Scroll shadow
 const navbar = document.getElementById('navbar');
