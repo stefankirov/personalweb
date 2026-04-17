@@ -54,7 +54,7 @@ export function render() {
     <div class="project-overview-text reveal">
       <p class="project-overview-label">Overview</p>
       <p>Meridian sits between your teams and the AI models they use — giving you control over who can access AI, what they can spend, and what happens when something goes wrong.</p>
-      <p>Built for organisations where AI is becoming critical infrastructure, not just an experiment.</p>
+      <p>Built for organizations where AI is becoming critical infrastructure, not just an experiment.</p>
       <p>The gateway is a transparent proxy — drop it in front of any OpenAI, Anthropic or other - compatible client and you get observability, cost controls, and failover with no code changes in the calling app.</p>
     </div>
     <div class="project-overview-sidebar reveal">
@@ -149,7 +149,7 @@ export function render() {
   <!-- CTA -->
   <div class="project-cta-section">
     <p class="project-cta-title">Interested in AI infrastructure<br>for <em>your</em> team?</p>
-    <p class="project-cta-sub">Whether you want to deploy Meridian or need something purpose-built for your organisation, I'd love to talk through what the right solution looks like.</p>
+    <p class="project-cta-sub">Whether you want to deploy Meridian or need something purpose-built for your organization, I'd love to talk through what the right solution looks like.</p>
     <a href="/#contact" class="btn-primary" data-link>Start a Conversation ↓</a>
   </div>
 

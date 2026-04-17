@@ -246,7 +246,7 @@ Scaled API platforms handling 3B+ monthly requests; Designed cloud architectures
       <div class="meridian-live">Live</div>
       <h3 class="meridian-name">Meridian Gateway</h3>
       <p class="meridian-tagline">AI Infrastructure Platform for Controlled, Scalable LLM Usage</p>
-      <p class="meridian-desc">Meridian sits between your teams and the AI models they use — giving you control over who can access AI, what they can spend, and what happens when something goes wrong. Built for organisations where AI is becoming critical infrastructure, not just an experiment.</p>
+      <p class="meridian-desc">Meridian sits between your teams and the AI models they use — giving you control over who can access AI, what they can spend, and what happens when something goes wrong. Built for organizations where AI is becoming critical infrastructure, not just an experiment.</p>
       <div class="meridian-links">
         <a href="/projects/meridian-gateway" class="btn-secondary" data-link>View case study →</a>
         <a href="/#contact" class="meridian-link" data-link>Discuss this project →</a>
