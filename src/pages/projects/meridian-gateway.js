@@ -1,6 +1,13 @@
 import { initRevealAnimations } from '../../utils.js';
 
-export const title = 'Meridian Gateway — Stefan Kirov';
+export const title = 'Meridian Gateway — AI Infrastructure Platform — Stefan Kirov';
+
+export const meta = {
+  title:       'Meridian Gateway — AI Infrastructure Platform — Stefan Kirov',
+  description: 'Meridian Gateway is an AI infrastructure platform that gives engineering teams control over LLM usage, budgets, caching, and failover. Built by Stefan Kirov.',
+  url:         'https://stefankirov.com/projects/meridian-gateway',
+  image:       'https://stefankirov.com/og-image.png',
+};
 
 export function render() {
   return `
@@ -26,15 +33,19 @@ export function render() {
   <div class="meridian-screenshots reveal">
     <img
       src="/meridian1.png"
-      alt="Meridian Gateway — Admin Dashboard overview"
+      alt="Meridian Gateway admin dashboard showing total requests, cost, cache hit rate, and active tenants"
       class="meridian-screenshot"
       loading="eager"
+      width="1200"
+      height="750"
     />
     <img
       src="/meridian2.png"
-      alt="Meridian Gateway — Request Log"
+      alt="Meridian Gateway request log showing per-tenant API calls, model usage, and response status"
       class="meridian-screenshot"
       loading="lazy"
+      width="1200"
+      height="750"
     />
   </div>
 
@@ -111,33 +122,6 @@ export function render() {
     </div>
   </div>
 
-  <!-- Performance -->
-  <div class="project-section project-section--alt">
-    <h2 class="project-section-title">Performance</h2>
-    <div class="meridian-perf reveal" style="margin-top:0">
-      <div class="meridian-perf-stat">
-        <span class="meridian-perf-val">&lt; 50ms</span>
-        <span class="meridian-perf-label">Added latency</span>
-      </div>
-      <div class="meridian-perf-stat">
-        <span class="meridian-perf-val">&lt; 30ms</span>
-        <span class="meridian-perf-label">Cached responses</span>
-      </div>
-      <div class="meridian-perf-stat">
-        <span class="meridian-perf-val">20–40%</span>
-        <span class="meridian-perf-label">Typical cost reduction</span>
-      </div>
-      <div class="meridian-perf-stat">
-        <span class="meridian-perf-val">99.9%</span>
-        <span class="meridian-perf-label">Availability target</span>
-      </div>
-      <div class="meridian-perf-stat">
-        <span class="meridian-perf-val">&lt; 2 hrs</span>
-        <span class="meridian-perf-label">Time to deploy</span>
-      </div>
-    </div>
-  </div>
-
   <!-- Architecture (placeholder) -->
   <div class="project-section">
     <h2 class="project-section-title">Architecture &amp; How It Works</h2>
@@ -175,4 +159,31 @@ export function render() {
 
 export function mount() {
   initRevealAnimations();
+  _injectJsonLd();
+}
+
+export function unmount() {
+  document.getElementById('jsonld-meridian')?.remove();
+}
+
+function _injectJsonLd() {
+  if (document.getElementById('jsonld-meridian')) return;
+  const script = document.createElement('script');
+  script.id   = 'jsonld-meridian';
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Meridian Gateway",
+    "applicationCategory": "DeveloperApplication",
+    "description": "AI infrastructure platform that gives engineering teams control over LLM usage, spend budgets, semantic caching, automatic failover, and full audit logging.",
+    "author": {
+      "@type": "Person",
+      "name": "Stefan Kirov",
+      "url": "https://stefankirov.com"
+    },
+    "url": "https://stefankirov.com/projects/meridian-gateway",
+    "keywords": "AI infrastructure, LLM gateway, OpenAI proxy, Anthropic proxy, API gateway, AI cost control, semantic caching"
+  });
+  document.head.appendChild(script);
 }

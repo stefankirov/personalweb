@@ -1,6 +1,13 @@
 import { initRevealAnimations } from '../utils.js';
 
-export const title = 'Stefan Kirov — Software Engineer, Team Lead, Architect';
+export const title = 'Stefan Kirov — Senior Engineering Consultant & Team Lead';
+
+export const meta = {
+  title:       'Stefan Kirov — Senior Engineering Consultant & Team Lead',
+  description: 'Senior Software Engineer with 13+ years building distributed systems, cloud-native platforms, and AI infrastructure. Available for remote consulting from Las Vegas, NV.',
+  url:         'https://stefankirov.com/',
+  image:       'https://stefankirov.com/og-image.png',
+};
 
 export function render() {
   return `
@@ -23,7 +30,7 @@ export function render() {
         continuously while branch dots fire as tool calls and return
         dots carry results back — representing the full agent loop.
       -->
-      <svg width="100%" viewBox="0 0 320 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="100%" viewBox="0 0 320 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 
         <!-- Orchestrator pulse ring (radiates outward after everything draws) -->
         <circle class="ai-pulse" cx="22" cy="48" r="10" stroke="#C0512F" stroke-width="1.5" fill="none"/>
@@ -360,28 +367,6 @@ Scaled API platforms handling 3B+ monthly requests; Designed cloud architectures
     
   </div>
 
-  <div class="meridian-perf reveal">
-    <div class="meridian-perf-stat">
-      <span class="meridian-perf-val">&lt; 50ms</span>
-      <span class="meridian-perf-label">Added latency</span>
-    </div>
-    <div class="meridian-perf-stat">
-      <span class="meridian-perf-val">&lt; 30ms</span>
-      <span class="meridian-perf-label">Cached responses</span>
-    </div>
-    <div class="meridian-perf-stat">
-      <span class="meridian-perf-val">20–40%</span>
-      <span class="meridian-perf-label">Typical cost reduction</span>
-    </div>
-    <div class="meridian-perf-stat">
-      <span class="meridian-perf-val">99.9%</span>
-      <span class="meridian-perf-label">Availability target</span>
-    </div>
-    <div class="meridian-perf-stat">
-      <span class="meridian-perf-val">&lt; 2 hrs</span>
-      <span class="meridian-perf-label">Time to deploy</span>
-    </div>
-  </div>
 </section>
 
 <!-- TECH STACK -->
@@ -462,14 +447,14 @@ Scaled API platforms handling 3B+ monthly requests; Designed cloud architectures
       <p class="contact-blurb">Whether you need an architect to design your next platform, a tech lead to run your delivery, or an engineering partner to help you move faster with AI — I'd love to hear about your project. Based in Las Vegas, NV. Available remotely.</p>
     </div>
     <div class="contact-links reveal">
-      <a href="https://mailstefankirov.netlify.app/" target="_blank" class="contact-link">
+      <a href="https://mailstefankirov.netlify.app/" target="_blank" rel="noopener noreferrer" class="contact-link">
         <span class="contact-link-icon">✉</span>
         <span class="contact-link-info">
           <span class="contact-link-label">Email</span>
           <span class="contact-link-value">contact me</span>
         </span>
       </a>
-      <a href="https://linkedin.com/in/stefan-kirov" target="_blank" class="contact-link">
+      <a href="https://linkedin.com/in/stefan-kirov" target="_blank" rel="noopener noreferrer" class="contact-link">
         <span class="contact-link-icon">in</span>
         <span class="contact-link-info">
           <span class="contact-link-label">LinkedIn</span>

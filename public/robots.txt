@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stefankirov.com/sitemap.xml
