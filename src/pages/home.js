@@ -1,10 +1,10 @@
 import { initRevealAnimations } from '../utils.js';
 
-export const title = 'Stefan Kirov — Senior Engineering Consultant & Team Lead';
+export const title = 'Stefan Kirov — Software Engineer · Systems Builder · Technical Lead';
 
 export const meta = {
-  title:       'Stefan Kirov — Senior Engineering Consultant & Team Lead',
-  description: 'Senior Software Engineer with 13+ years building distributed systems, cloud-native platforms, and AI infrastructure. Available for remote consulting from Las Vegas, NV.',
+  title:       'Stefan Kirov — Software Engineer · Systems Builder · Technical Lead',
+  description: 'Senior Software Engineer with 13+ years building distributed systems, cloud platforms, and AI infrastructure. Expertise in Azure, microservices, and high-scale APIs. Based in Las Vegas, NV.',
   url:         'https://stefankirov.com/',
   image:       'https://stefankirov.com/og-image.png',
 };
@@ -33,58 +33,58 @@ export function render() {
       <svg width="100%" viewBox="0 0 320 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 
         <!-- Orchestrator pulse ring (radiates outward after everything draws) -->
-        <circle class="ai-pulse" cx="22" cy="48" r="10" stroke="#C0512F" stroke-width="1.5" fill="none"/>
+        <circle class="ai-pulse" cx="22" cy="48" r="10" stroke="#06B6D4" stroke-width="1.5" fill="none"/>
 
         <!-- ── 1. Entry: orchestrator → loop ── -->
         <path id="p-entry" class="ai-path-entry"
               d="M 22 48 L 78 48"
-              stroke="#C0512F" stroke-width="1.5" stroke-opacity="0.5"/>
+              stroke="#06B6D4" stroke-width="1.5" stroke-opacity="0.6"/>
 
         <!-- ── 2. Reasoning loop (full ellipse, center 130,48 rx=52 ry=30) ──
               Sweeps counterclockwise: left → TOP → right → BOTTOM → left
               so the animateMotion dot visually goes up first, then down.    -->
         <path id="p-loop" class="ai-path-loop"
               d="M 78 48 A 52 30 0 0 0 182 48 A 52 30 0 0 0 78 48"
-              stroke="#C0512F" stroke-width="1.5" stroke-opacity="0.4"/>
+              stroke="#06B6D4" stroke-width="1.5" stroke-opacity="0.5"/>
 
         <!-- ── 3. Branch paths: dispatch node → tools ── -->
         <path id="p-t1" class="ai-path-t1"
               d="M 182 48 C 218 48 248 22 282 18"
-              stroke="#C0512F" stroke-width="1" stroke-opacity="0.32"/>
+              stroke="#8B5CF6" stroke-width="1" stroke-opacity="0.4"/>
         <path id="p-t2" class="ai-path-t2"
               d="M 182 48 L 296 48"
-              stroke="#C0512F" stroke-width="1" stroke-opacity="0.32"/>
+              stroke="#06B6D4" stroke-width="1" stroke-opacity="0.4"/>
         <path id="p-t3" class="ai-path-t3"
               d="M 182 48 C 218 48 248 74 282 78"
-              stroke="#C0512F" stroke-width="1" stroke-opacity="0.32"/>
+              stroke="#22C55E" stroke-width="1" stroke-opacity="0.4"/>
 
         <!-- ── Return paths: results flow back into loop (dashed, fade in) ── -->
         <path id="p-ret1"
               class="ai-path-ret"
               d="M 282 18 C 258 6 148 4 78 36"
-              stroke="#C0512F" stroke-width="1" stroke-opacity="0.22"/>
+              stroke="#8B5CF6" stroke-width="1" stroke-opacity="0.3"/>
         <path id="p-ret3"
               class="ai-path-ret"
               d="M 282 78 C 258 90 148 92 78 60"
-              stroke="#C0512F" stroke-width="1" stroke-opacity="0.22"/>
+              stroke="#22C55E" stroke-width="1" stroke-opacity="0.3"/>
 
         <!-- ── Traveling dots ── -->
 
         <!-- Loop: primary dot orbiting (starts after loop draws: 0.85+1.0=1.85s) -->
-        <circle r="2.5" fill="#C0512F">
+        <circle r="2.5" fill="#06B6D4">
           <animateMotion dur="2.4s" begin="2.1s" repeatCount="indefinite">
             <mpath href="#p-loop"/>
           </animateMotion>
         </circle>
         <!-- Loop: echo dot, half period behind -->
-        <circle r="1.8" fill="#C0512F" fill-opacity="0.38">
+        <circle r="1.8" fill="#06B6D4" fill-opacity="0.45">
           <animateMotion dur="2.4s" begin="3.3s" repeatCount="indefinite">
             <mpath href="#p-loop"/>
           </animateMotion>
         </circle>
 
         <!-- Entry: pulse entering the loop -->
-        <circle r="2" fill="#C0512F">
+        <circle r="2" fill="#06B6D4">
           <animateMotion dur="0.48s" begin="2.0s" repeatCount="indefinite">
             <mpath href="#p-entry"/>
           </animateMotion>
@@ -92,21 +92,21 @@ export function render() {
         </circle>
 
         <!-- Tool call: → T1 (model) -->
-        <circle r="1.8" fill="#C0512F">
+        <circle r="1.8" fill="#8B5CF6">
           <animateMotion dur="0.85s" begin="3.0s" repeatCount="indefinite">
             <mpath href="#p-t1"/>
           </animateMotion>
           <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.92;1" dur="0.85s" begin="3.0s" repeatCount="indefinite"/>
         </circle>
         <!-- Tool call: → T2 (tool) -->
-        <circle r="1.8" fill="#C0512F">
+        <circle r="1.8" fill="#06B6D4">
           <animateMotion dur="0.72s" begin="3.8s" repeatCount="indefinite">
             <mpath href="#p-t2"/>
           </animateMotion>
           <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.92;1" dur="0.72s" begin="3.8s" repeatCount="indefinite"/>
         </circle>
         <!-- Tool call: → T3 (api) -->
-        <circle r="1.8" fill="#C0512F">
+        <circle r="1.8" fill="#22C55E">
           <animateMotion dur="0.85s" begin="4.6s" repeatCount="indefinite">
             <mpath href="#p-t3"/>
           </animateMotion>
@@ -114,14 +114,14 @@ export function render() {
         </circle>
 
         <!-- Return: result from T1 back into loop top -->
-        <circle r="1.6" fill="#C0512F" fill-opacity="0.55">
+        <circle r="1.6" fill="#8B5CF6" fill-opacity="0.6">
           <animateMotion dur="0.85s" begin="3.35s" repeatCount="indefinite">
             <mpath href="#p-ret1"/>
           </animateMotion>
           <animate attributeName="opacity" values="0;0.6;0.6;0" keyTimes="0;0.08;0.92;1" dur="0.85s" begin="3.35s" repeatCount="indefinite"/>
         </circle>
         <!-- Return: result from T3 back into loop bottom -->
-        <circle r="1.6" fill="#C0512F" fill-opacity="0.55">
+        <circle r="1.6" fill="#22C55E" fill-opacity="0.6">
           <animateMotion dur="0.85s" begin="4.95s" repeatCount="indefinite">
             <mpath href="#p-ret3"/>
           </animateMotion>
@@ -129,30 +129,46 @@ export function render() {
         </circle>
 
         <!-- ── Dispatch node at loop exit (fades in after loop draws) ── -->
-        <circle class="ai-node ai-node-agent" cx="182" cy="48" r="4" fill="#C0512F" fill-opacity="0.75"/>
+        <circle class="ai-node ai-node-agent" cx="182" cy="48" r="4" fill="#06B6D4" fill-opacity="0.85"/>
 
         <!-- ── Leaf nodes (right side) ── -->
         <!-- ● LLM model (top) -->
-        <circle  class="ai-node ai-node-leaf" cx="282" cy="18" r="4.5" fill="#C0512F"/>
+        <circle  class="ai-node ai-node-leaf" cx="282" cy="18" r="4.5" fill="#8B5CF6"/>
         <!-- ◆ External tool / code exec (middle, diamond) -->
-        <polygon class="ai-node ai-node-leaf" points="296,42 304,48 296,54 288,48" fill="#C0512F" fill-opacity="0.65"/>
+        <polygon class="ai-node ai-node-leaf" points="296,42 304,48 296,54 288,48" fill="#06B6D4" fill-opacity="0.75"/>
         <!-- ○ API / data source (bottom) -->
-        <circle  class="ai-node ai-node-leaf" cx="282" cy="78" r="4.5" fill="none" stroke="#C0512F" stroke-width="1.5" stroke-opacity="0.8"/>
+        <circle  class="ai-node ai-node-leaf" cx="282" cy="78" r="4.5" fill="none" stroke="#22C55E" stroke-width="1.5" stroke-opacity="0.9"/>
 
         <!-- ── Orchestrator (always visible, renders on top of pulse ring) ── -->
-        <circle cx="22" cy="48" r="8" fill="#C0512F"/>
+        <circle cx="22" cy="48" r="8" fill="#06B6D4"/>
 
       </svg>
     </div>
-    <h1>Senior Engineering<br><em>Consultant</em><br>&amp; Team Lead</h1>
-    <p class="hero-desc">I design and scale backend systems that handle millions of users and billions of requests — with a focus on performance, reliability, and cost efficiency.
-13+ years building production systems across Azure, microservices, and high-throughput APIs.
-Now specializing in AI infrastructure, agentic systems, and LLM-powered platforms.</p>
-<p class="hero-desc">
-Scaled API platforms handling 3B+ monthly requests; Designed cloud architectures with high availability and fault tolerance; Reduced infrastructure costs through caching, observability, and smart routing; Led teams delivering production systems end-to-end (architecture → deployment)</p>
+    <h1>Software Engineer<br><em>Systems Builder</em><br>Technical Lead</h1>
+    <p class="hero-desc">I build and scale backend systems that handle millions of users and billions of requests — with a focus on performance, reliability, and cost efficiency.
+13+ years building production systems across distributed architectures, cloud infrastructure, and high-throughput APIs.
+Currently specializing in AI infrastructure, agentic systems, and LLM-powered platforms.</p>
+    <ul class="hero-highlights" style="list-style: none; padding: 0; margin: 1.5rem 0 2.5rem; font-size: 0.95rem; color: var(--warm-mid); line-height: 2;">
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem;">
+        <span style="color: var(--accent); font-size: 0.7rem;">▸</span>
+        <span>Scaled API platforms handling 3B+ monthly requests</span>
+      </li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem;">
+        <span style="color: var(--accent); font-size: 0.7rem;">▸</span>
+        <span>Designed cloud architectures with high availability and fault tolerance</span>
+      </li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem;">
+        <span style="color: var(--accent); font-size: 0.7rem;">▸</span>
+        <span>Reduced infrastructure costs through caching, observability, and smart routing</span>
+      </li>
+      <li style="display: flex; align-items: baseline; gap: 0.75rem;">
+        <span style="color: var(--accent); font-size: 0.7rem;">▸</span>
+        <span>Led teams delivering production systems end-to-end</span>
+      </li>
+    </ul>
     <div class="hero-ctas">
-      <a href="/#contact" class="btn-primary" data-link>Let's Talk ↓</a>
-      <a href="/#offer" class="btn-secondary" data-link>What I Do</a>
+      <a href="/#projects" class="btn-primary" data-link>View My Work ↓</a>
+      <a href="/#offer" class="btn-secondary" data-link>What I Bring</a>
     </div>
   </div>
   <div class="hero-visual">
@@ -177,9 +193,9 @@ Scaled API platforms handling 3B+ monthly requests; Designed cloud architectures
   </div>
 </section>
 
-<!-- WHAT I DO -->
+<!-- WHAT I BRING -->
 <section id="offer">
-  <h2 class="section-title">What I Do</h2>
+  <h2 class="section-title">What I Bring</h2>
   <div class="offer-grid">
     <div class="offer-block reveal">
       <div class="offer-icon">⬡</div>
@@ -214,25 +230,25 @@ Scaled API platforms handling 3B+ monthly requests; Designed cloud architectures
   </div>
 </section>
 
-<!-- HOW I WORK -->
+<!-- EXPERIENCE HIGHLIGHTS -->
 <section id="process">
-  <h2 class="section-title">How I Work</h2>
+  <h2 class="section-title">Experience Highlights</h2>
   <div class="process-steps">
     <div class="process-step reveal">
-      <p class="process-step-title">Discovery &amp; Scoping</p>
-      <p class="process-step-desc">We start with a focused session to understand your system, your team, and the problems you're actually trying to solve — not just the ones on the surface.</p>
+      <p class="process-step-title">High-Scale Systems</p>
+      <p class="process-step-desc">Scaled API platforms handling 3B+ monthly requests with 99.9% uptime across distributed microservices architecture.</p>
     </div>
     <div class="process-step reveal">
-      <p class="process-step-title">Architecture &amp; Planning</p>
-      <p class="process-step-desc">I produce clear architecture proposals, technical roadmaps, and delivery plans with realistic scope. No hand-wavy diagrams — decisions you can build on immediately.</p>
+      <p class="process-step-title">Cloud Architecture</p>
+      <p class="process-step-desc">Designed cloud architectures on Azure with high availability, fault tolerance, and automated failover capabilities.</p>
     </div>
     <div class="process-step reveal">
-      <p class="process-step-title">Embedded Delivery</p>
-      <p class="process-step-desc">I join your team in-sprint, write production code, run Scrum ceremonies, and mentor engineers as we ship together. Async-first, remote-comfortable, across time zones.</p>
+      <p class="process-step-title">Cost Optimization</p>
+      <p class="process-step-desc">Reduced infrastructure costs 30-40% through intelligent caching, observability-driven optimization, and smart routing strategies.</p>
     </div>
     <div class="process-step reveal">
-      <p class="process-step-title">Handoff &amp; Continuity</p>
-      <p class="process-step-desc">Every engagement ends with thorough documentation, knowledge transfer, and a system your team owns confidently — not a black box only I can maintain.</p>
+      <p class="process-step-title">Technical Leadership</p>
+      <p class="process-step-desc">Led cross-functional teams delivering production systems end-to-end, from architecture design through deployment and monitoring.</p>
     </div>
   </div>
 </section>
@@ -439,12 +455,34 @@ Scaled API platforms handling 3B+ monthly requests; Designed cloud architectures
   </details>
 </section>
 
+<!-- ABOUT ME -->
+<section id="about" style="padding: 4rem 4rem 2rem;">
+  <div class="reveal" style="max-width: 800px; margin: 0 auto;">
+    <h2 class="section-title">About Me</h2>
+    <p style="font-size: 1.1rem; line-height: 1.8; color: var(--ink); margin-bottom: 1.5rem;">
+      I'm a software engineer with 13+ years building and leading systems in production environments. My work spans backend services, cloud infrastructure, and platform design.
+    </p>
+    <p style="font-size: 1rem; line-height: 1.8; color: var(--warm-mid); margin-bottom: 1rem;">
+      I'm particularly interested in roles involving:
+    </p>
+    <ul style="font-size: 1rem; line-height: 1.8; color: var(--warm-mid); margin-left: 1.5rem; margin-bottom: 1.5rem;">
+      <li>Distributed systems and high-scale architecture</li>
+      <li>Performance optimization and cost efficiency</li>
+      <li>AI/ML infrastructure and platform engineering</li>
+      <li>Technical leadership and mentoring</li>
+    </ul>
+    <p style="font-size: 1rem; line-height: 1.8; color: var(--warm-mid);">
+      Based in Las Vegas, NV. Open to remote opportunities.
+    </p>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-grid">
     <div class="reveal">
-      <h2 class="contact-intro">Ready to work with<br>someone who<br><em>actually ships?</em></h2>
-      <p class="contact-blurb">Whether you need an architect to design your next platform, a tech lead to run your delivery, or an engineering partner to help you move faster with AI — I'd love to hear about your project. Based in Las Vegas, NV. Available remotely.</p>
+      <h2 class="contact-intro">Let's<br><em>Connect</em></h2>
+      <p class="contact-blurb">If you're working on systems that need to scale — or thinking about how to build them right from the start — I'd be glad to connect.</p>
     </div>
     <div class="contact-links reveal">
       <a href="https://mailstefankirov.netlify.app/" target="_blank" rel="noopener noreferrer" class="contact-link">
