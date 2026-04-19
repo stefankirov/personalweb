@@ -131,13 +131,20 @@ export function mountChat() {
     input.value = '';
     sendBtn.disabled = true;
     addMessage('user', text);
-    setLoading(true);
+    setLoading(true);  // shows typing indicator
+
+    // Pre-create the assistant bubble (hidden until first token arrives)
+    const assistantDiv = document.createElement('div');
+    assistantDiv.className = 'chat-msg chat-msg-assistant';
+    assistantDiv.textContent = '';
+
+    let fullResponse = '';
 
     try {
       const headers = { 'Content-Type': 'application/json' };
       if (API_KEY) headers['X-API-Key'] = API_KEY;
 
-      const res = await fetch(`${API_URL}/chat`, {
+      const res = await fetch(`${API_URL}/chat/stream`, {
         method: 'POST',
         headers,
         body: JSON.stringify({ message: text, history }),
@@ -145,13 +152,56 @@ export function mountChat() {
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-      const data = await res.json();
-      addMessage('assistant', data.response);
-      history.push({ role: 'user', content: text });
-      history.push({ role: 'assistant', content: data.response });
+      // Response is live — swap typing indicator for the real bubble
+      hideTyping();
+      messages.appendChild(assistantDiv);
+      messages.scrollTop = messages.scrollHeight;
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+
+        // SSE lines are separated by \n\n; process complete events
+        const parts = buffer.split('\n\n');
+        buffer = parts.pop(); // keep any incomplete trailing chunk
+
+        for (const part of parts) {
+          const line = part.trim();
+          if (!line.startsWith('data:')) continue;
+
+          const raw = line.slice(5).trim();
+          if (raw === '[DONE]') break;
+
+          try {
+            const { token } = JSON.parse(raw);
+            fullResponse += token;
+            assistantDiv.textContent = fullResponse;
+            messages.scrollTop = messages.scrollHeight;
+          } catch {
+            // ignore malformed SSE frames
+          }
+        }
+      }
+
+      if (fullResponse) {
+        history.push({ role: 'user', content: text });
+        history.push({ role: 'assistant', content: fullResponse });
+      }
     } catch (err) {
       console.error('Chat error:', err);
-      addMessage('assistant', "Sorry, I couldn't connect right now. Please try again in a moment.");
+      hideTyping();
+      // Show error in the bubble (append it if not yet in DOM)
+      if (!assistantDiv.isConnected) messages.appendChild(assistantDiv);
+      if (!fullResponse) {
+        assistantDiv.textContent = "Sorry, I couldn't connect right now. Please try again in a moment.";
+      }
+      messages.scrollTop = messages.scrollHeight;
     } finally {
       setLoading(false);
       input.focus();
